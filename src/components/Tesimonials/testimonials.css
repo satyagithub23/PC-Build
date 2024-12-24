@@ -1,0 +1,64 @@
+.testimonials-container {
+    display: flex;
+    color: white;
+    margin: 3rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.testimonials-container h1 {
+    font-size: 3rem;
+    margin: 1rem;
+}
+
+.testimonials-container .slick-slide > div {
+  margin: 0 40px 0 10px;
+  padding: 1rem;
+}
+
+.card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgb(153, 138, 138);
+    width: 3rem;
+    margin-top: 4rem;
+    flex-direction: column;
+    background-color: aliceblue;
+    color: black;
+    padding: 19px;
+    text-wrap: wrap;
+    flex-wrap: wrap;
+    border-radius: 5px;
+}
+
+.card h4 {
+    font-size: 1.2rem;
+    margin: 0;
+    text-align: center;
+}
+
+.card p {
+    font-size: 1rem;
+    margin: 1.2rem 0;
+}
+
+.card .image-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    object-fit: cover;
+    overflow: hidden;
+    width: 5rem;
+    height: 5rem;
+    margin: -4rem auto 0 auto;
+    border-radius: 50%;
+    border: 4px solid rgb(0, 0, 0);
+}
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+}

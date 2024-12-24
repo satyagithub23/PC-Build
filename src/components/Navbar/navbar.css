@@ -1,0 +1,122 @@
+.navbar-header {
+    display: flex;
+    background-color: rgba(240, 248, 255, 0.603);
+    backdrop-filter: blur(10px);
+    align-items: center;
+    justify-content: space-around;
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+    top: 0;
+}
+.logo-name-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 1rem;
+}
+nav {
+    display: flex;
+    color: #000;
+    max-height: 3.71rem;
+    align-items: center;
+    margin-left: auto;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    height: 100%;
+}
+
+nav ul li {
+    display: flex;
+    margin: 0 2rem;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+nav ul li button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background-color: transparent;
+    font-size: inherit;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+nav ul li a {
+    color: #000;
+    text-decoration: none;
+}
+nav ul li a:hover, .dropdown-btn:hover {
+    font-size: 1.09rem;
+    color: #133a6d;
+}
+
+.categories-container  {
+    display: none;
+    position: absolute;
+    top: 3.72rem;
+    width: 10rem;
+    background-color: aliceblue;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+}
+
+.categories-container ul {
+    display: flex;
+    margin: 0.5rem 0.2rem;
+    padding: 0;
+    width: 90%;
+    flex-direction: column;
+    align-items:flex-start;
+    justify-content:flex-start;
+}
+
+.categories-container ul li {
+    display: flex;
+    justify-content: flex-start;
+    margin: 0 0;
+    width: 100%;
+    padding: 0.3rem;
+
+}
+
+.categories-container ul li:hover {
+    background-color: #bbb7b79d;
+}
+
+.categories-container.show {
+    display: flex;
+}
+
+@media (max-width: 768px) {
+    .navbar-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    nav ul li {
+        margin: 0.5rem 0;
+    }
+
+    .categories-container {
+        position: static;
+        width: 100%;
+    }
+}
+
+
