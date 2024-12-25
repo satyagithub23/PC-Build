@@ -1,18 +1,20 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './navbar.css';
+
 
 const Navbar = () => {
     const items = [
-        { id: 1, category: 'Processor' },
-        { id: 2, category: 'Motherboard' },
-        { id: 3, category: 'RAM' },
-        { id: 4, category: 'SSD/HDD' },
-        { id: 5, category: 'Graphics Card' },
-        { id: 6, category: 'Cabinets' },
-        { id: 7, category: 'PSU' },
-        { id: 8, category: 'Monitor' },
-        { id: 9, category: 'Keyboard' },
-        { id: 10, category: 'Headphones' }
+        { id: 1, category: 'Processor', slug: 'processors' },
+        { id: 2, category: 'Motherboard', slug: 'motherboard' },
+        { id: 3, category: 'RAM', slug: 'ram' },
+        { id: 4, category: 'SSD/HDD', slug: 'ssd-hdd' },
+        { id: 5, category: 'Graphics Card', slug: 'gpu' },
+        { id: 6, category: 'Cabinets', slug: 'cabinets' },
+        { id: 7, category: 'PSU', slug: 'psu' },
+        { id: 8, category: 'Monitor', slug: 'monitor' },
+        { id: 9, category: 'Keyboard', slug: 'keyboard' },
+        { id: 10, category: 'Headphones', slug: 'headphones' }
     ];
 
     const [dropdown, setDropdown] = useState(false);
@@ -27,28 +29,28 @@ const Navbar = () => {
                 <div className="logo-name-container">
                     <h3>PC Build</h3>
                 </div>
-                <nav>
-                    <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Services</a></li>
-                        <li><a href="#">Products</a></li>
-                        <li>
-                            <button className='dropdown-btn' onClick={toggleDropdown}>
-                                Categories
-                                <span className="material-symbols-outlined">keyboard_arrow_down</span>
-                                <div className={`categories-container ${dropdown ? 'show' : ''}`}>
-                                    <ul>
-                                        {items.map((item) => (
-                                            <li key={item.id}><a href="#">{item.category}</a></li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            </button>
-                        </li>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">About Us</a></li>
-                    </ul>
-                </nav>
+                    <nav>
+                        <ul>
+                            <li><Link to="/">Home</Link></li>
+                            <li><Link to="/services">Services</Link></li>
+                            <li><Link to="/">Products</Link></li>
+                            <li>
+                                <button className='dropdown-btn' onClick={toggleDropdown}>
+                                    Categories
+                                    <span className="material-symbols-outlined">keyboard_arrow_down</span>
+                                    <div className={`categories-container ${dropdown ? 'show' : ''}`}>
+                                        <ul>
+                                            {items.map((item) => (
+                                                <li key={item.id}><Link to={`/categories/${item.slug}`}>{item.category}</Link></li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                </button>
+                            </li>
+                            <li><Link to="/">Contact Us</Link></li>
+                            <li><Link to="/">About Us</Link></li>
+                        </ul>
+                    </nav>
             </section>
 
         </>

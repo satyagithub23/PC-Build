@@ -54,7 +54,7 @@ const Carousel = () => {
     ]
     return (
         <>
-            <div className="slider-container">
+            <div id='services' className="slider-container">
                 <h1>Services</h1>
                 <Slider {...settings}>
                     {slides.map((slide) => (

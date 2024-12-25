@@ -1,0 +1,44 @@
+.textarea-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 80%;
+    padding: 1rem;
+    margin: 1rem auto;
+}
+
+.textarea-container h1 {
+    font-size: 2rem;
+    margin: 1rem 0;
+    color: white;
+}
+
+.textarea-container .comment {
+    width: 100%;
+    min-height: 4rem;
+    margin: auto;
+    padding: 1rem;
+    background-color: black;
+    border: 2px solid #ccc;
+    border-radius: 7px;
+    resize: none;
+    color: rgb(230, 236, 241);
+    font-size: 1rem;
+}
+
+.textarea-container .comment:focus {
+    outline: none;
+    border: 2px solid #1a73e8;
+}
+
+.textarea-container .comment-btn {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: #1a73e8;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+}
+

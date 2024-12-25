@@ -1,8 +1,16 @@
+.footer-container {
+    display: flex;
+    height: 100%;
+    align-items: flex-end;
+    margin-top: auto;
+}
 footer {
     display: flex;
+    width: 100%;
     align-items: center;
     justify-content: center;
     background-color: #747373;
     color: white;
     padding: 0.1rem;
+    margin-top: auto;
 }

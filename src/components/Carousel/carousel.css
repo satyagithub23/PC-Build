@@ -3,17 +3,22 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 90%;
-    margin: 4rem auto;
     border-radius: 1rem;
     padding: 0.3rem;
     overflow: hidden;
     color: white;
+    width: 90%;
+    margin: 6rem auto 0rem auto;
+    height: fit-content;
 }
 
 .slider-container h1 {
     font-size: 3rem;
     margin: 0;
+}
+
+.slider-container .slick-slide>div {
+    margin: 0 1px;
 }
 
 .slick-slide img {
@@ -25,12 +30,6 @@
 
 .slick-slider {
     width: 100%;
-}
-
-.slider-container {
-    width: 90%;
-    margin: 5rem auto;
-    height: fit-content;
 }
 
 .content-container {
