@@ -19,6 +19,8 @@
     border-radius: 23px;
 }
 
+
+
 .details-container {
     display: flex;
     align-items: center;
@@ -40,7 +42,9 @@
     justify-content:first baseline;
 }
 
-.info-container h2 {
+.info-container .item-details-link {
+    color: white;
+    text-decoration: none;
     font-size: 1.6rem;
     margin: 0;
 }
@@ -54,17 +58,17 @@
     margin: 10px 0;
 }
 
-.info-container button {
-    width: fit-content;
-    border: none;
-    border-radius: 3px;
-    padding: 7px 9px;
-    background-color: rgb(255, 144, 46);
-    font-weight: bold;
-    cursor: pointer;
+.pagination {
+    display: flex;
+    padding: 1rem;
 }
 
-.info-container button:hover {
-    background-color: rgb(192, 91, 2);
+.pagination .load-more-button {
+    margin: 0 1rem 0 auto;
+    padding: 1rem;
+    border: none;
+    border-radius: 5px;
     color: white;
+    background-color: rgb(255, 115, 0);
+    cursor: pointer;
 }
