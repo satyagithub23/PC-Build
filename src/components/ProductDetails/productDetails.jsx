@@ -1,42 +1,43 @@
 // import { useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import ReactImageMagnify from 'react-image-magnify'
+import { useParams } from 'react-router-dom'
 import './productDetails.css'
 
 const ProductDetails = () => {
-    // const { id } = useParams()
+    const { id } = useParams()
     const [product, setProduct] = useState({})
     useEffect(() => {
-        const prdct = {
-            id: 1,
-            name: 'Intel i3-8100',
-            Category: 'processors',
-            Cores: 4,
-            Threads: 4,
-            Base_Clock_Speed: '3.6 GHz',
-            Cache: '6 MB',
-            TDP: '65 W',
-            Description: 'Entry-level processor for basic multitasking and office use.',
-            image: '/ComponentsImages/Processors/IntelProcessor.jpg',
-            price: '$109.99',
+        const getProduct = async () => {
+            const response = await fetch(`http://localhost:8080/api/products/get?id=${id}`)
+            const data = await response.json()
+            console.log(data.records[0]);
+            setProduct(data.records[0])
         }
-        setProduct(prdct)
-    }, [])
+        getProduct()
+    }, [id])
+
+    // const decodeObject = (text) => {
+    //     let decodedString = text.replace(/&quot;/g, '"');
+    //     let jsonObject = JSON.parse(decodedString);
+    //     console.log(jsonObject);
+    // }
+
     return (
         <>
-            <div className="product-details-main-container">
+            {product && <div className="product-details-main-container">
                 <div className="product-details-container">
                     <div className="product-details-image-container">
                         <ReactImageMagnify
                             {...{
                                 smallImage: {
-                                    alt: product.name,
+                                    alt: product.DreamPCProductName__c,
                                     width: 400,
                                     height: 400,
-                                    src: product.image,
+                                    src: product.DreamPCProductImage__c,
                                 },
                                 largeImage: {
-                                    src: product.image,
+                                    src: product.DreamPCProductImage__c,
                                     width: 1800,
                                     height: 1800,
                                 },
@@ -50,28 +51,36 @@ const ProductDetails = () => {
                         />
                     </div>
                     <div className="product-details-info-container">
-                        <h2 className='product-details-name'>{product.name}</h2>
-                        <p className='product-details-description'>{product.Description}</p>
-                        <p className='product-details-price'>Price: {product.price}</p>
+                        <h2 className='product-details-name'>{product.DreamPCProductName__c}</h2>
+                        <p className='product-details-description'>{product.DreamPCProductDescription__c}</p>
+                        <p className='product-details-price'>Price: {product.DreamPCProductPrice__c}</p>
                         <div className="product-details-btn-container">
                             <button className="buy-now-btn">Buy Now</button>
                             <button className="add-to-cart-btn">Add To Cart</button>
                         </div>
                         <table>
                             <tbody>
-                                {Object.entries(product).map(([key, value]) => (
-                                    key !== 'id' && key !== 'image' && key !== 'name' && key !== 'Description' && key !== 'price' && (
+                                {Object.entries(product).map(([key, value]) => {
+                                    if (
+                                        typeof value === 'object' || // Exclude objects
+                                        key === 'attributes' || // Exclude specific keys if necessary
+                                        ['DreamPCProductID__c', 'DreamPCProductImage__c', 'DreamPCProductName__c', 'DreamPCProductDescription__c', 'DreamPCProductPrice__c'].includes(key) // Exclude specific keys
+                                    ) {
+                                        return null;
+                                    }
+                                    return (
                                         <tr key={key}>
-                                            <td className='property'>{key.replaceAll('_', ' ')}:&nbsp;</td>
+                                            <td className='property'>{key.replaceAll('__c', ' ').replaceAll('DreamPCProduct', '')}:&nbsp;</td>
                                             <td>{value}</td>
                                         </tr>
-                                    )
-                                ))}
+                                    );
+                                })}
                             </tbody>
                         </table>
+
                     </div>
                 </div>
-            </div>
+            </div>}
         </>
     )
 }
