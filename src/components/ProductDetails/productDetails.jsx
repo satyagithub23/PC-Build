@@ -2,30 +2,48 @@
 import { useState, useEffect } from 'react'
 import ReactImageMagnify from 'react-image-magnify'
 import { useParams } from 'react-router-dom'
+import { Atom } from 'react-loading-indicators'
 import './productDetails.css'
 
 const ProductDetails = () => {
     const { id } = useParams()
     const [product, setProduct] = useState({})
+    const [productExtraSpecs, setExtraProductSpecs] = useState({})
+    const [specs, setSpecs] = useState(null);
+    const [loading, setLoading] = useState(true)
+
     useEffect(() => {
         const getProduct = async () => {
             const response = await fetch(`http://localhost:8080/api/products/get?id=${id}`)
             const data = await response.json()
-            console.log(data.records[0]);
             setProduct(data.records[0])
         }
         getProduct()
     }, [id])
 
-    // const decodeObject = (text) => {
-    //     let decodedString = text.replace(/&quot;/g, '"');
-    //     let jsonObject = JSON.parse(decodedString);
-    //     console.log(jsonObject);
-    // }
+    useEffect(() => {
+        if (product.DreamPCProductSpecs__c) {
+            setSpecs(product.DreamPCProductSpecs__c);
+            setLoading(false);
+        }
+    }, [product]);
+
+
+    useEffect(() => {
+        const decodeObject = (text) => {
+            let decodedString = text.replace(/&quot;/g, '"');
+            let jsonObject = JSON.parse(decodedString);
+            setExtraProductSpecs(jsonObject)
+        }
+        if (specs) {
+            decodeObject(specs);
+        }
+    }, [specs])
 
     return (
         <>
-            {product && <div className="product-details-main-container">
+            {loading && <div className='loading'><Atom color="#32cd32" size="medium" text="" textColor="" /></div>}
+            {!loading && product && <div className="product-details-main-container">
                 <div className="product-details-container">
                     <div className="product-details-image-container">
                         <ReactImageMagnify
@@ -60,7 +78,7 @@ const ProductDetails = () => {
                         </div>
                         <table>
                             <tbody>
-                                {Object.entries(product).map(([key, value]) => {
+                                {Object.entries(productExtraSpecs).map(([key, value]) => {
                                     if (
                                         typeof value === 'object' || // Exclude objects
                                         key === 'attributes' || // Exclude specific keys if necessary
@@ -70,7 +88,7 @@ const ProductDetails = () => {
                                     }
                                     return (
                                         <tr key={key}>
-                                            <td className='property'>{key.replaceAll('__c', ' ').replaceAll('DreamPCProduct', '')}:&nbsp;</td>
+                                            <td className='property'>{key.replaceAll('__c', ' ').replaceAll('DreamPCProduct', '').replaceAll('_', ' ')}:&nbsp;</td>
                                             <td>{value}</td>
                                         </tr>
                                     );

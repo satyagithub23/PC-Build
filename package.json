@@ -11,9 +11,11 @@
   },
   "dependencies": {
     "js-cookie": "^3.0.5",
+    "prop-types": "^15.8.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-image-magnify": "^2.7.4",
+    "react-loading-indicators": "^1.0.0",
     "react-router-dom": "^7.1.1",
     "react-simple-star-rating": "^5.1.7",
     "react-slick": "^0.30.3",

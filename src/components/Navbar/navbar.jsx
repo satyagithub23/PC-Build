@@ -1,28 +1,16 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Cookies from 'js-cookie'
+import PropTypes from 'prop-types';
 import './navbar.css';
 
 
-const Navbar = () => {
+const Navbar = ({ items }) => {
 
     const [tokenAvailable, settokenAvailable] = useState(false)
     const location = useLocation()
-    // const items = [
-    //     { id: 1, category: 'Processor', slug: 'processors' },
-    //     { id: 2, category: 'Motherboard', slug: 'motherboard' },
-    //     { id: 3, category: 'RAM', slug: 'ram' },
-    //     { id: 4, category: 'SSD/HDD', slug: 'ssd-hdd' },
-    //     { id: 5, category: 'Graphics Card', slug: 'gpu' },
-    //     { id: 6, category: 'Cabinets', slug: 'cabinets' },
-    //     { id: 7, category: 'PSU', slug: 'psu' },
-    //     { id: 8, category: 'Monitor', slug: 'monitor' },
-    //     { id: 9, category: 'Keyboard', slug: 'keyboard' },
-    //     { id: 10, category: 'Headphones', slug: 'headphones' }
-    // ];
-
     const [dropdown, setDropdown] = useState(false);
-    const [items, setItems] = useState([])
+    // const [items, setItems] = useState([])
 
     const toggleDropdown = () => {
         setDropdown(!dropdown);
@@ -36,14 +24,14 @@ const Navbar = () => {
 
 
 
-    useEffect(() => {
-        const getItems = async () => {
-            const response = await fetch(`http://localhost:8080/api/category/all`)
-            const data = await response.json();
-            setItems(data.records)
-        }
-        getItems()
-    }, [])
+    // useEffect(() => {
+    //     const getItems = async () => {
+    //         const response = await fetch(`http://localhost:8080/api/category/all`)
+    //         const data = await response.json();
+    //         setItems(data.records)
+    //     }
+    //     getItems()
+    // }, [])
 
 
 
@@ -83,5 +71,9 @@ const Navbar = () => {
         </>
     );
 };
+
+Navbar.propTypes = {
+    items: PropTypes.array.isRequired
+}
 
 export default Navbar;
