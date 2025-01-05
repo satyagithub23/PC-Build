@@ -1,0 +1,29 @@
+.admin-dashboard-main-container {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    border: 2px solid #e0e0e0;
+    border-radius: 1rem;
+    width: 100%;
+    margin: 0.3rem 0.3rem;
+    padding: 0.4rem;
+}
+
+.admin-dashboard-main-container h2 {
+    font-size: 2.5rem;
+    margin: 0 auto 0 7px;
+    font-weight: normal;
+}
+
+.admin-dashboard-main-container hr {
+    width: 100%;
+}
+
+.admin-dashboard-main-container .admin-dashboard-info-container {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid red;
+    width: 100%;
+}
