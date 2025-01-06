@@ -1,5 +1,6 @@
 import { useState } from 'react'
-
+import { useNavigate } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify'
 import './signup.css'
 
 const Signup = () => {
@@ -11,19 +12,58 @@ const Signup = () => {
         address: ''
     })
 
-    const handleSubmit = (e) => {
+    const navigate = useNavigate()
+
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log("signup form submitted");
-        setFormData({name: "", email: "", password: "", address: ""})
+        const { name, email, password, address } = formData
+        setFormData({ name: "", email: "", password: "", address: "" })
+        const response = await fetch(`http://localhost:8080/api/signup`,
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    "userName": name,
+                    "email": email,
+                    "password": password,
+                    "userAddress": address
+                })
+            }
+        )
+        const data = await response.json()
+        if (data.success) {
+            // Cookies.set('token', data.token, { path: '/', secure: true, sameSite: 'strict' })
+
+            toast.success('Account Created. Please Login!', {
+                position: 'top-right',
+                autoClose: 2000,
+                closeOnClick: true,
+                hideProgressBar: false
+            })
+            setTimeout(() => {
+                navigate("/login")
+            }, 2000);
+        } else {
+            console.log("Invalid credentials", data);
+            toast.error('Invalid Credentials!', {
+                position: 'top-right',
+                autoClose: 2000,
+                closeOnClick: true,
+                hideProgressBar: false
+            })
+        }
     }
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData({...formData, [name]: value})
+        setFormData({ ...formData, [name]: value })
     }
 
     return (
         <div className='signup-main-container'>
+            <ToastContainer />
             <div className="signup-image-container">
                 <img src="/LoginImages/login.png" alt="" />
             </div>
